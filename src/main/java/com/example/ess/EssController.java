@@ -19,7 +19,7 @@ public class EssController {
         this.emailSendingService = emailSendingService;
     }
 
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("api/ess")
     public Boolean sendEmail(@RequestBody Map<String, String> data) {
         String name = data.get("name");
