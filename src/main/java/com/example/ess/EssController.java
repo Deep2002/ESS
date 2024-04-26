@@ -40,7 +40,7 @@ public class EssController {
         System.out.println("Event Time: " + eventTime);
 
         emailSendingService.sendEmail(fromEmail, email, "Thank you - "+name, "Hi "+name+", Thank you for contacting Shakti Flow Entertainment!\n\nYour request:\n\nName: "+name+"\nPhone number: "+phone+"\nEvent type: "+eventType+"\nNumber of guests:  "+numOfGuests+"\nEvent Date:  "+eventDate+"\nEvent Time:  "+eventTime+"\n\nIf you have any other Information you'd like to add, you can reply to this email. We will reach out to you soon!");
-        emailSendingService.sendEmail(fromEmail, email, name + " - New Event", "Event requested by "+name+":\nPhone number: "+phone+"\nEmail: "+email+"\nEvent type: "+eventType+"\nNumber of guests:  "+numOfGuests+"\nEvent Date:  "+eventDate+"\nEvent Time:  "+eventTime);
+        emailSendingService.sendEmail(fromEmail, fromEmail, name + " - New Event", "Event requested by "+name+":\nPhone number: "+phone+"\nEmail: "+email+"\nEvent type: "+eventType+"\nNumber of guests:  "+numOfGuests+"\nEvent Date:  "+eventDate+"\nEvent Time:  "+eventTime);
 
 
         return true;
