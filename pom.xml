@@ -14,7 +14,8 @@
 	<name>ess</name>
 	<description>ESS - &apos;Email Sending Service&apos;</description>
 	<properties>
-		<java.version>17</java.version>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
 	</properties>
 	<dependencies>
 		<dependency>
