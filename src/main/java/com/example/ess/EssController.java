@@ -2,6 +2,7 @@ package com.example.ess;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,7 @@ public class EssController {
     }
 
     // @CrossOrigin(origins = "http://localhost:3000")
-    @CrossOrigin(origins = "http://shaktiflowdj.com")
+    @CrossOrigin(origins = "https://shaktiflowdj.com")
     @PostMapping("/api/ess")
     public Boolean sendEmail(@RequestBody Map<String, String> data) {
         String name = data.get("name");
@@ -31,19 +32,30 @@ public class EssController {
         String eventDate = data.get("eventDate");
         String eventTime = data.get("eventTime");
 
-        System.out.println("Name: " + name);
-        System.out.println("Email: " + email);
-        System.out.println("Phone: " + phone);
-        System.out.println("Event type: " + eventType);
-        System.out.println("# of Guests: " + numOfGuests);
-        System.out.println("Event Date: " + eventDate);
-        System.out.println("Event Time: " + eventTime);
+        // System.out.println("Name: " + name);
+        // System.out.println("Email: " + email);
+        // System.out.println("Phone: " + phone);
+        // System.out.println("Event type: " + eventType);
+        // System.out.println("# of Guests: " + numOfGuests);
+        // System.out.println("Event Date (y-m-d): " + eventDate);
+        // System.out.println("Event Time: " + eventTime);
 
-        emailSendingService.sendEmail(fromEmail, email, "Thank you - "+name, "Hi "+name+", Thank you for contacting Shakti Flow Entertainment!\n\nYour request:\n\nName: "+name+"\nPhone number: "+phone+"\nEvent type: "+eventType+"\nNumber of guests:  "+numOfGuests+"\nEvent Date:  "+eventDate+"\nEvent Time:  "+eventTime+"\n\nIf you have any other Information you'd like to add, you can reply to this email. We will reach out to you soon!");
-        emailSendingService.sendEmail(fromEmail, fromEmail, name + " - New Event", "Event requested by "+name+":\nPhone number: "+phone+"\nEmail: "+email+"\nEvent type: "+eventType+"\nNumber of guests:  "+numOfGuests+"\nEvent Date:  "+eventDate+"\nEvent Time:  "+eventTime);
+        emailSendingService.sendEmail(fromEmail, email, "Thank you - "+name, "Hi "+name+", Thank you for contacting Shakti Flow Entertainment!\n\nYour request:\n\nName: "+name+"\nPhone number: "+phone+"\nEvent type: "+eventType+"\nNumber of guests:  "+numOfGuests+"\nEvent Date (y-m-d):  "+eventDate+"\nEvent Time:  "+eventTime+"\n\nIf you have any other Information you'd like to add, you can reply to this email. We will reach out to you soon!");
+        emailSendingService.sendEmail(fromEmail, fromEmail, name + " - New Event", "Event requested by "+name+":\nPhone number: "+phone+"\nEmail: "+email+"\nEvent type: "+eventType+"\nNumber of guests:  "+numOfGuests+"\nEvent Date (y-m-d):  "+eventDate+"\nEvent Time:  "+eventTime);
 
 
         return true;
+    }
+
+
+    //* This method will wake up the server on website load. So that user wont have issue with sending emails. */
+    // This is needed because the current hosting service provider slows down the server when it inactive for while.
+    @CrossOrigin(origins = "https://shaktiflowdj.com")
+    @GetMapping("/api/wakeUp")
+    public String wakeUp()
+    {
+        System.out.println("Server is waking up..");
+        return "Server awake!";
     }
 }
  
